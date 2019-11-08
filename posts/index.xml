@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on murdho.com</title>
-    <link>http://murdho.com/posts/</link>
+    <link>https://murdho.com/posts/</link>
     <description>Recent content in Posts on murdho.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 16 Apr 2018 09:18:26 +0300</lastBuildDate>
-    
-	<atom:link href="http://murdho.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+
+	<atom:link href="https://murdho.com/posts/index.xml" rel="self" type="application/rss+xml" />
+
+
     <item>
       <title>Hello</title>
-      <link>http://murdho.com/posts/hello/</link>
+      <link>https://murdho.com/posts/hello/</link>
       <pubDate>Mon, 16 Apr 2018 09:18:26 +0300</pubDate>
-      
-      <guid>http://murdho.com/posts/hello/</guid>
+
+      <guid>https://murdho.com/posts/hello/</guid>
       <description>fmt.Println(&amp;#34;hello!&amp;#34;)</description>
     </item>
-    
+
   </channel>
 </rss>

@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+
   <url>
-    <loc>http://murdho.com/posts/hello/</loc>
+    <loc>https://murdho.com/posts/hello/</loc>
     <lastmod>2018-04-16T09:18:26+03:00</lastmod>
   </url>
-  
+
   <url>
-    <loc>http://murdho.com/about/</loc>
+    <loc>https://murdho.com/about/</loc>
   </url>
-  
+
   <url>
-    <loc>http://murdho.com/categories/</loc>
+    <loc>https://murdho.com/categories/</loc>
     <priority>0</priority>
   </url>
-  
+
   <url>
-    <loc>http://murdho.com/posts/</loc>
-    <lastmod>2018-04-16T09:18:26+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://murdho.com/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://murdho.com/</loc>
+    <loc>https://murdho.com/posts/</loc>
     <lastmod>2018-04-16T09:18:26+03:00</lastmod>
     <priority>0</priority>
   </url>
-  
+
+  <url>
+    <loc>https://murdho.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+
+  <url>
+    <loc>https://murdho.com/</loc>
+    <lastmod>2018-04-16T09:18:26+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+
 </urlset>

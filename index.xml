@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>murdho.com</title>
-    <link>http://murdho.com/</link>
+    <link>https://murdho.com/</link>
     <description>Recent content on murdho.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 16 Apr 2018 09:18:26 +0300</lastBuildDate>
-    
-	<atom:link href="http://murdho.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+
+	<atom:link href="https://murdho.com/index.xml" rel="self" type="application/rss+xml" />
+
+
     <item>
       <title>Hello</title>
-      <link>http://murdho.com/posts/hello/</link>
+      <link>https://murdho.com/posts/hello/</link>
       <pubDate>Mon, 16 Apr 2018 09:18:26 +0300</pubDate>
-      
-      <guid>http://murdho.com/posts/hello/</guid>
+
+      <guid>https://murdho.com/posts/hello/</guid>
       <description>fmt.Println(&amp;#34;hello!&amp;#34;)</description>
     </item>
-    
+
     <item>
       <title>About Murdho</title>
-      <link>http://murdho.com/about/</link>
+      <link>https://murdho.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://murdho.com/about/</guid>
+
+      <guid>https://murdho.com/about/</guid>
       <description>[]byte{ 0xa, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x2c, 0x20, 0x49, 0x27, 0x6d, 0x20, 0x61, 0x20, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x21, 0xa, }</description>
     </item>
-    
+
   </channel>
 </rss>
