@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="place-self-end lg:fixed lg:bottom-0 -z-10">
+    <div class="place-self-end lg:fixed lg:bottom-0 lg:right-0 -z-10">
         <img alt="murdho caricature" class="h-full w-full max-w-[800px]" src="/murdho.png"/>
     </div>
 </div>
