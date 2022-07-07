@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-styles": "tailwindcss -c resources/tailwind.config.js -i resources/app.css -o public/style.css",
     "build-assets": "cp -a static/. public",
-    "build-html": "bb src/main.clj",
+    "build-html": "bb src/render.clj",
     "build": "npm run build-assets && npm run build-html && npm run build-styles",
+    "build-prod": "npm run build && rm -rf docs && mv public docs",
     "watch": "watchexec -w src -w resources -w static npm run build",
     "server": "bb server"
   },
