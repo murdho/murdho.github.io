@@ -8,8 +8,8 @@
     "build-styles": "tailwindcss -c resources/tailwind.config.js -i resources/app.css -o public/style.css",
     "build-assets": "cp -a static/. public",
     "build-html": "bb src/main.clj",
-    "build": "npm run build-styles && npm run build-assets && npm run build-html",
-    "watch": "watchexec -w src npm run build",
+    "build": "npm run build-assets && npm run build-html && npm run build-styles",
+    "watch": "watchexec -w src -w resources -w static npm run build",
     "server": "bb server"
   },
   "keywords": [],

@@ -1,4 +1,5 @@
-{:tasks
+{:paths ["src"]
+ :tasks
  {server {:extra-deps {org.babashka/http-server {:mvn/version "0.1.11"}}
           :requires ([babashka.http-server :as server])
           :task (server/exec {:port 3000
