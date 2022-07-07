@@ -65,8 +65,8 @@
       {:title "professional stuff is in"}
       [:a {:href "https://www.linkedin.com/in/murdho/" :target "_blank"}
        (badge {:color :blue :class :cursor-pointer}
-              "linkedin" nbsp icon-external-link)
-       (badge {:color :green :class :ml-3} "#software-engineer")])
+              "linkedin" nbsp icon-external-link)]
+      (badge {:color :green :class :ml-3} "#software-engineer"))
 
     (section
       {:title "and some random stuff is"}
