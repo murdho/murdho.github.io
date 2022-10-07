@@ -23,8 +23,8 @@
                    (str "bg-" color "-100")
                    (str "hover:bg-" color "-200")
                    (str "text-" color "-800")
-                   (str "dark:bg-" color "-800")
-                   (str "dark:hover:bg-" color "-700")
+                   (str "dark:bg-" color "-700")
+                   (str "dark:hover:bg-" color "-800")
                    (str "dark:text-" color "-50"))}
      contents]))
 
@@ -54,7 +54,7 @@
     (section
       {:title "writing sustainable code and loving it ❤️"}
       (badge {:color :lime :class :mr-3} "#clojure")
-      (badge {:color :amber} "#rust"))
+      (badge {:color :orange} "#rust"))
 
     (section
       {:title "some code is in"}
@@ -78,7 +78,7 @@
     (section
       {:title "more to come soon"}
       (badge {:color :fuchsia :class :mr-3} "#fingers-crossed")
-      (badge {:color :orange} "#decade-goals"))]
+      (badge {:color :amber} "#decade-goals"))]
 
    [:div.place-self-end.lg:fixed.lg:bottom-0.lg:right-0.-z-10
     [:img.h-full.w-full {:alt "murdho caricature" :class "max-w-[800px]" :src "/murdho.png"}]]])
