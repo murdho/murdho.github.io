@@ -570,12 +570,12 @@ video {
   margin-top: 0.25rem;
 }
 
-.ml-5 {
-  margin-left: 1.25rem;
+.mr-5 {
+  margin-right: 1.25rem;
 }
 
-.ml-3 {
-  margin-left: 0.75rem;
+.mr-3 {
+  margin-right: 0.75rem;
 }
 
 .inline-flex {
@@ -636,6 +636,10 @@ video {
 
 .place-self-end {
   place-self: end;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .rounded-md {

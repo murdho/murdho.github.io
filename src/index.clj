@@ -17,15 +17,15 @@
 
 (defn badge [{:keys [color class]} & contents]
   (let [color (name color)
-        class (when class (name class))]
-    [:span.inline-flex.items-center.px-3.py-2.rounded-md.font-medium.mt-1.cursor-not-allowed
-     {:class (filter identity [(str "bg-" color "-100")
-                               (str "hover:bg-" color "-200")
-                               (str "text-" color "-800")
-                               (str "dark:bg-" color "-800")
-                               (str "dark:hover:bg-" color "-700")
-                               (str "dark:text-" color "-50")
-                               class])}
+        classes (->> class vector flatten (filter some?) (map name))]
+    [:span.inline-flex.items-center.px-3.py-2.rounded-md.font-medium.mt-1.cursor-not-allowed.whitespace-nowrap
+     {:class (conj classes
+                   (str "bg-" color "-100")
+                   (str "hover:bg-" color "-200")
+                   (str "text-" color "-800")
+                   (str "dark:bg-" color "-800")
+                   (str "dark:hover:bg-" color "-700")
+                   (str "dark:text-" color "-50"))}
      contents]))
 
 (def body
@@ -38,23 +38,23 @@
     (section
       {:title "my name is"
        :text-size :6xl}
-      (badge {:color :violet} "Murdho")
-      (badge {:color :yellow :class :ml-5} "Savila"))
+      (badge {:color :violet :class :mr-5} "Murdho")
+      (badge {:color :yellow} "Savila"))
 
     (section
       {:title "living a quiet life in"}
-      (badge {:color :sky} "#helsinki")
-      (badge {:color :emerald :class :ml-3} "#finland"))
+      (badge {:color :sky :class :mr-3} "#helsinki")
+      (badge {:color :emerald} "#finland"))
 
     (section
       {:title "first appeared in"}
-      (badge {:color :stone} "#tallinn")
-      (badge {:color :pink :class :ml-3} "#estonia"))
+      (badge {:color :stone :class :mr-3} "#tallinn")
+      (badge {:color :pink} "#estonia"))
 
     (section
       {:title "writing sustainable code and loving it ❤️"}
-      (badge {:color :lime} "#clojure")
-      (badge {:color :amber :class :ml-3} "#rust"))
+      (badge {:color :lime :class :mr-3} "#clojure")
+      (badge {:color :amber} "#rust"))
 
     (section
       {:title "some code is in"}
@@ -65,9 +65,9 @@
     (section
       {:title "professional stuff is in"}
       [:a {:href "https://www.linkedin.com/in/murdho/" :target "_blank"}
-       (badge {:color :blue :class :cursor-pointer}
+       (badge {:color :blue :class [:mr-3 :cursor-pointer]}
               "linkedin" nbsp icon-external-link)]
-      (badge {:color :green :class :ml-3} "#software-engineer"))
+      (badge {:color :green} "#software-engineer"))
 
     (section
       {:title "tweets are in"}
@@ -77,8 +77,8 @@
 
     (section
       {:title "more to come soon"}
-      (badge {:color :fuchsia} "#fingers-crossed")
-      (badge {:color :orange :class :ml-3} "#decade-goals"))]
+      (badge {:color :fuchsia :class :mr-3} "#fingers-crossed")
+      (badge {:color :orange} "#decade-goals"))]
 
    [:div.place-self-end.lg:fixed.lg:bottom-0.lg:right-0.-z-10
     [:img.h-full.w-full {:alt "murdho caricature" :class "max-w-[800px]" :src "/murdho.png"}]]])
