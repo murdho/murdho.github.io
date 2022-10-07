@@ -20,8 +20,11 @@
         class (when class (name class))]
     [:span.inline-flex.items-center.px-3.py-2.rounded-md.font-medium.mt-1.cursor-not-allowed
      {:class (filter identity [(str "bg-" color "-100")
-                               (str "hover:bg-" color "-50")
+                               (str "hover:bg-" color "-200")
                                (str "text-" color "-800")
+                               (str "dark:bg-" color "-800")
+                               (str "dark:hover:bg-" color "-700")
+                               (str "dark:text-" color "-50")
                                class])}
      contents]))
 
@@ -30,30 +33,28 @@
    [:div.pt-5.pl-5.md:pt-20.md:pl-20.lg:pb-20.grid.grid-cols-1.grid-flow-row.gap-20.justify-evenly
     (section
       {:title "hey! 👋"}
-      (badge {:color :gray} "#yo"))
+      (badge {:color :slate} "#yo"))
 
     (section
       {:title "my name is"
        :text-size :6xl}
-      (badge {:color :purple} "Murdho")
+      (badge {:color :violet} "Murdho")
       (badge {:color :yellow :class :ml-5} "Savila"))
 
     (section
-      {:title "currently living in"}
-      (badge {:color :indigo} "#helsinki")
-      (badge {:color :purple :class :ml-3} "#finland"))
+      {:title "living a quiet life in"}
+      (badge {:color :sky} "#helsinki")
+      (badge {:color :emerald :class :ml-3} "#finland"))
 
     (section
       {:title "first appeared in"}
-      (badge {:color :yellow} "#tallinn")
+      (badge {:color :stone} "#tallinn")
       (badge {:color :pink :class :ml-3} "#estonia"))
 
     (section
-      {:title "i'm writing code and loving it ❤️"}
-      (badge {:color :green} "#clojure")
-      (badge {:color :blue :class :ml-3} "#go")
-      (badge {:color :pink :class :ml-3} "#ruby")
-      (badge {:color :red :class :ml-3} "#rust"))
+      {:title "writing sustainable code and loving it ❤️"}
+      (badge {:color :lime} "#clojure")
+      (badge {:color :amber :class :ml-3} "#rust"))
 
     (section
       {:title "some code is in"}
@@ -69,9 +70,15 @@
       (badge {:color :green :class :ml-3} "#software-engineer"))
 
     (section
-      {:title "and some random stuff is"}
-      (badge {:color :pink} "here (not yet)")
-      (badge {:color :purple :class :ml-3} "#itiswhatitis"))]
+      {:title "tweets are in"}
+      [:a {:href "https://www.twitter.com/0xMURDHO" :target "_blank"}
+       (badge {:color :cyan :class :cursor-pointer}
+              "twitter" nbsp icon-external-link)])
+
+    (section
+      {:title "more to come soon"}
+      (badge {:color :fuchsia} "#fingers-crossed")
+      (badge {:color :orange :class :ml-3} "#decade-goals"))]
 
    [:div.place-self-end.lg:fixed.lg:bottom-0.lg:right-0.-z-10
     [:img.h-full.w-full {:alt "murdho caricature" :class "max-w-[800px]" :src "/murdho.png"}]]])
