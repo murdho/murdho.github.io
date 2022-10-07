@@ -1,6 +1,8 @@
-# murdhocom
+# murdho.com
+
+This is my `#good-enough` website. Done, but not finished.
+
+`docs/` directory has the build output, just like GitHub Pages prefers it.
 
 TODO:
-* Write some stuff here
-* Use only babashka, remove npm stuff
-
+- [ ] Use only babashka, remove npm stuff
