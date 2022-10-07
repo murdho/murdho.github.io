@@ -38,22 +38,22 @@
     (section
       {:title "my name is"
        :text-size :6xl}
-      (badge {:color :violet :class :mr-5} "Murdho")
+      (badge {:color :violet :class :mr-3} "Murdho")
       (badge {:color :yellow} "Savila"))
 
     (section
       {:title "living a quiet life in"}
-      (badge {:color :sky :class :mr-3} "#helsinki")
+      (badge {:color :sky :class :mr-2} "#helsinki")
       (badge {:color :emerald} "#finland"))
 
     (section
       {:title "first appeared in"}
-      (badge {:color :stone :class :mr-3} "#tallinn")
+      (badge {:color :stone :class :mr-2} "#tallinn")
       (badge {:color :pink} "#estonia"))
 
     (section
       {:title "writing sustainable code and loving it ❤️"}
-      (badge {:color :lime :class :mr-3} "#clojure")
+      (badge {:color :lime :class :mr-2} "#clojure")
       (badge {:color :orange} "#rust"))
 
     (section
@@ -65,7 +65,7 @@
     (section
       {:title "professional stuff is in"}
       [:a {:href "https://www.linkedin.com/in/murdho/" :target "_blank"}
-       (badge {:color :blue :class [:mr-3 :cursor-pointer]}
+       (badge {:color :blue :class [:mr-2 :cursor-pointer]}
               "linkedin" nbsp icon-external-link)]
       (badge {:color :green} "#software-engineer"))
 
@@ -77,8 +77,15 @@
 
     (section
       {:title "more to come soon"}
-      (badge {:color :fuchsia :class :mr-3} "#fingers-crossed")
-      (badge {:color :amber} "#decade-goals"))]
+      (badge {:color :fuchsia :class :mr-2} "#fingers-crossed")
+      (badge {:color :amber} "#decade-goals"))
+
+    (section
+      {:title "you can reach me at"}
+      (badge {:color :teal :class :mr-2} "murdho")
+      (badge {:color :indigo :class :mr-2} "@")
+      (badge {:color :rose} "murdho.com"))]
+
 
    [:div.place-self-end.lg:fixed.lg:bottom-0.lg:right-0.-z-10
     [:img.h-full.w-full {:alt "murdho caricature" :class "max-w-[800px]" :src "/murdho.png"}]]])
