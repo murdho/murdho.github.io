@@ -76,6 +76,12 @@
               "twitter" nbsp icon-external-link)])
 
     (section
+      {:title "mastodoning in"}
+      [:a {:rel "me" :href "https://hachyderm.io/@murdho" :target "_blank"}
+       (badge {:color :zinc :class :cursor-pointer}
+              "hachyderm.io" nbsp icon-external-link)])
+
+    (section
       {:title "more to come soon"}
       (badge {:color :fuchsia :class :mr-2} "#fingers-crossed")
       (badge {:color :amber} "#decade-goals"))
