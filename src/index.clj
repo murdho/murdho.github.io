@@ -52,9 +52,10 @@
       (badge {:color :pink} "#estonia"))
 
     (section
-      {:title "writing sustainable code and loving it ❤️"}
+      {:title "embracing uncertainty and writing sustainable code"}
+      (badge {:color :orange :class :mr-2} "#rust")
       (badge {:color :lime :class :mr-2} "#clojure")
-      (badge {:color :orange} "#rust"))
+      (badge {:color :red} "#ruby"))
 
     (section
       {:title "some code is in"}
@@ -76,7 +77,7 @@
               "twitter" nbsp icon-external-link)])
 
     (section
-      {:title "mastodoning in"}
+      {:title "fediverse exploration happens in"}
       [:a {:rel "me" :href "https://hachyderm.io/@murdho" :target "_blank"}
        (badge {:color :zinc :class :cursor-pointer}
               "hachyderm.io" nbsp icon-external-link)])
