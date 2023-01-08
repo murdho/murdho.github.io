@@ -18,7 +18,7 @@
 (defn badge [{:keys [color class]} & contents]
   (let [color (name color)
         classes (->> class vector flatten (filter some?) (map name))]
-    [:span.inline-flex.items-center.px-3.py-2.rounded-md.font-medium.mt-1.cursor-not-allowed.whitespace-nowrap
+    [:span.inline-flex.items-center.px-3.py-2.rounded-md.font-light.mt-1.cursor-not-allowed.whitespace-nowrap
      {:class (conj classes
                    (str "bg-" color "-100")
                    (str "hover:bg-" color "-200")

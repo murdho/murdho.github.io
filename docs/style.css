@@ -784,8 +784,8 @@ video {
   line-height: 1;
 }
 
-.font-medium {
-  font-weight: 500;
+.font-light {
+  font-weight: 300;
 }
 
 .text-gray-900 {
@@ -891,6 +891,18 @@ video {
 .text-rose-800 {
   --tw-text-opacity: 1;
   color: rgb(159 18 57 / var(--tw-text-opacity));
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+
+  font-style: normal;
+
+  font-weight: 300;
+
+  src: url("/fonts/JetBrainsMono-Light.ttf") format("truetype");
+
+  src: url("/fonts/JetBrainsMono-Light.woff2") format("woff2");
 }
 
 body {
