@@ -52,7 +52,7 @@
       (badge {:color :pink} "#estonia"))
 
     (section
-      {:title "embracing uncertainty and writing sustainable code"}
+      {:title "embracing uncertainty with"}
       (badge {:color :orange :class :mr-2} "#rust")
       (badge {:color :lime :class :mr-2} "#clojure")
       (badge {:color :red} "#ruby"))
