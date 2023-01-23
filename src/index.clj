@@ -48,14 +48,14 @@
 
     (section
       {:title "first appeared in"}
-      (badge {:color :stone :class :mr-2} "#tallinn")
+      (badge {:color :zinc :class :mr-2} "#tallinn")
       (badge {:color :pink} "#estonia"))
 
     (section
       {:title "embracing uncertainty with"}
+      (badge {:color :red :class :mr-2} "#ruby")
       (badge {:color :orange :class :mr-2} "#rust")
-      (badge {:color :lime :class :mr-2} "#clojure")
-      (badge {:color :red} "#ruby"))
+      (badge {:color :lime} "#clojure"))
 
     (section
       {:title "some code is in"}
@@ -79,7 +79,7 @@
     (section
       {:title "toots are in"}
       [:a {:rel "me" :href "https://ruby.social/@murdho" :target "_blank"}
-       (badge {:color :zinc :class :cursor-pointer}
+       (badge {:color :red :class :cursor-pointer}
               "ruby.social" nbsp icon-external-link)])
 
     (section
