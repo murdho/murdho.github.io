@@ -9,7 +9,7 @@
     "build-assets": "cp -a static/. public",
     "build-html": "bb src/render.clj",
     "build": "npm run build-assets && npm run build-html && npm run build-styles",
-    "build-prod": "npm run build && rm -rf docs && mv public docs",
+    "build-prod": "npm run build && rm -rf docs && mv public docs && prettier --write docs/index.html",
     "watch": "watchexec -w src -w resources -w static npm run build",
     "server": "bb server"
   },
@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "prettier": "2.8.3",
     "tailwindcss": "^3.1.4"
   }
 }

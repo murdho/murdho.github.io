@@ -77,10 +77,10 @@
               "twitter" nbsp icon-external-link)])
 
     (section
-      {:title "fediverse exploration happens in"}
-      [:a {:rel "me" :href "https://hachyderm.io/@murdho" :target "_blank"}
+      {:title "toots are in"}
+      [:a {:rel "me" :href "https://ruby.social/@murdho" :target "_blank"}
        (badge {:color :zinc :class :cursor-pointer}
-              "hachyderm.io" nbsp icon-external-link)])
+              "ruby.social" nbsp icon-external-link)])
 
     (section
       {:title "more to come soon"}
