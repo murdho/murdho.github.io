@@ -39,7 +39,7 @@
       {:title "my name is"
        :text-size :6xl}
       (badge {:color :violet :class :mr-3} "Murdho")
-      (badge {:color :yellow} "Savila"))
+      (badge {:color :orange} "Savila"))
 
     (section
       {:title "living a quiet life in"}
@@ -52,32 +52,26 @@
       (badge {:color :pink} "#estonia"))
 
     (section
-      {:title "embracing uncertainty with"}
+      {:title "writing code for fun and berries 🍇"}
       (badge {:color :red :class :mr-2} "#ruby")
-      (badge {:color :orange :class :mr-2} "#rust")
-      (badge {:color :lime} "#clojure"))
+      (badge {:color :lime :class :mr-2} "#clojure")
+      (badge {:color :amber} "#zig"))
 
     (section
-      {:title "some code is in"}
+      {:title "some code"}
       [:a {:href "https://github.com/murdho" :target "_blank"}
        (badge {:color :gray :class :cursor-pointer}
               "github" nbsp icon-external-link)])
 
     (section
-      {:title "professional stuff is in"}
+      {:title "professional stuff"}
       [:a {:href "https://www.linkedin.com/in/murdho/" :target "_blank"}
        (badge {:color :blue :class [:mr-2 :cursor-pointer]}
               "linkedin" nbsp icon-external-link)]
       (badge {:color :green} "#software-engineer"))
 
     (section
-      {:title "tweets are in"}
-      [:a {:href "https://www.twitter.com/0xMURDHO" :target "_blank"}
-       (badge {:color :cyan :class :cursor-pointer}
-              "twitter" nbsp icon-external-link)])
-
-    (section
-      {:title "toots are in"}
+      {:title "find me on mastodon"}
       [:a {:rel "me" :href "https://ruby.social/@murdho" :target "_blank"}
        (badge {:color :red :class :cursor-pointer}
               "ruby.social" nbsp icon-external-link)])
@@ -88,7 +82,7 @@
       (badge {:color :amber} "#decade-goals"))
 
     (section
-      {:title "you can reach me at"}
+      {:title "hit me up"}
       (badge {:color :teal :class :mr-2} "murdho")
       (badge {:color :indigo :class :mr-2} "@")
       (badge {:color :rose} "murdho.com"))]
