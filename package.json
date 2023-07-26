@@ -10,8 +10,8 @@
     "build-html": "bb src/render.clj",
     "build": "npm run build-assets && npm run build-html && npm run build-styles",
     "build-prod": "npm run build && rm -rf docs && mv public docs && prettier --write docs/index.html",
-    "watch": "watchexec -w src -w resources -w static npm run build",
-    "server": "bb server"
+    "watch": "watchexec -r -w src -w resources -w static npm run serve",
+    "serve": "npm run build && bb server"
   },
   "keywords": [],
   "author": "",
