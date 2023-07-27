@@ -52,19 +52,21 @@
       (badge {:color :pink} "#estonia"))
 
     (section
-      {:title "writing code for fun and berries 🍇"}
+      {:title "writing code for fun and profit 🍇"}
       (badge {:color :red :class :mr-2} "#ruby")
       (badge {:color :lime :class :mr-2} "#clojure")
-      (badge {:color :amber} "#zig"))
+      (badge {:color :sky :class :mr-2} "#go")
+      (badge {:color :amber :class :mr-2} "#zig")
+      (badge {:color :blue} "#postgresql"))
 
     (section
-      {:title "some code"}
+      {:title "some of my code is in"}
       [:a {:href "https://github.com/murdho" :target "_blank"}
        (badge {:color :gray :class :cursor-pointer}
               "github" nbsp icon-external-link)])
 
     (section
-      {:title "professional stuff"}
+      {:title "professional details are in"}
       [:a {:href "https://www.linkedin.com/in/murdho/" :target "_blank"}
        (badge {:color :blue :class [:mr-2 :cursor-pointer]}
               "linkedin" nbsp icon-external-link)]
@@ -75,11 +77,6 @@
       [:a {:rel "me" :href "https://ruby.social/@murdho" :target "_blank"}
        (badge {:color :red :class :cursor-pointer}
               "ruby.social" nbsp icon-external-link)])
-
-    (section
-      {:title "more to come soon"}
-      (badge {:color :fuchsia :class :mr-2} "#fingers-crossed")
-      (badge {:color :amber} "#decade-goals"))
 
     (section
       {:title "hit me up"}
