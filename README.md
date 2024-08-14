@@ -5,8 +5,8 @@ This is my `#good-enough` website. Done, but not finished.
 ## Development
 
 **Dependencies**
-* tailwindcss
-* ruby
+* `tailwindcss`
+* `ruby`
 
 **Run server**
 ```bash
