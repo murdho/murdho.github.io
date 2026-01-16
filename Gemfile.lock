@@ -1,9 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    tailwindcss-ruby (3.4.17)
-    tailwindcss-ruby (3.4.17-arm64-darwin)
-    webrick (1.9.1)
+    tailwindcss-ruby (4.1.18)
+    tailwindcss-ruby (4.1.18-arm64-darwin)
+    webrick (1.9.2)
 
 PLATFORMS
   arm64-darwin-24

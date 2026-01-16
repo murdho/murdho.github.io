@@ -4,17 +4,14 @@ This is my `#good-enough` website. Done, but not finished.
 
 ## Development
 
-**Dependencies**
-* `tailwindcss`
-* `ruby`
+Install dependencies
 
-**Run server**
 ```bash
-make server
+bundle
 ```
 
-**Build CSS**
+Run dev server
 
 ```bash
-make css
+bin/dev
 ```
