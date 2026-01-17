@@ -88,7 +88,8 @@
     --text-5xl--line-height: 1;
     --font-weight-light: 300;
     --radius-md: 0.375rem;
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -433,6 +434,14 @@
     --tw-duration: 300ms;
     transition-duration: 300ms;
   }
+  .ease-in {
+    --tw-ease: var(--ease-in);
+    transition-timing-function: var(--ease-in);
+  }
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+  }
   .hover\:-translate-y-1 {
     &:hover {
       @media (hover: hover) {
@@ -575,6 +584,11 @@
   .lg\:right-0 {
     @media (width >= 64rem) {
       right: calc(var(--spacing) * 0);
+    }
+  }
+  .lg\:-bottom-8 {
+    @media (width >= 64rem) {
+      bottom: calc(var(--spacing) * -8);
     }
   }
   .lg\:bottom-0 {
@@ -903,6 +917,10 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -1061,6 +1079,7 @@
       --tw-skew-y: initial;
       --tw-font-weight: initial;
       --tw-duration: initial;
+      --tw-ease: initial;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;

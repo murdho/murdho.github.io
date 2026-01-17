@@ -92,26 +92,77 @@ body {
     animation: fallDownCenter 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Slide in from right with playful peek and spin */
-@keyframes slideInRight {
+/* Rising animation for caricature - launching up from bottom with sway */
+@keyframes fallDownCaricature {
     0% {
         opacity: 0;
-        transform: translateX(100vw) translateY(30vh) rotate(-90deg);
+        transform: translateY(100vh) translateX(0) rotate(5deg);
     }
-    20% {
+    15% {
         opacity: 1;
-        transform: translateX(60%) translateY(30vh) rotate(-90deg);
+        transform: translateY(70vh) translateX(-30px) rotate(-4deg);
     }
-    40% {
-        opacity: 1;
-        transform: translateX(60%) translateY(30vh) rotate(-90deg);
+    30% {
+        transform: translateY(40vh) translateX(25px) rotate(4deg);
+    }
+    45% {
+        transform: translateY(15vh) translateX(-18px) rotate(-3deg);
+    }
+    60% {
+        transform: translateY(3vh) translateX(12px) rotate(2deg);
+    }
+    75% {
+        transform: translateY(0.5vh) translateX(-5px) rotate(-1deg);
+    }
+    85% {
+        transform: translateY(0) translateX(0) rotate(0deg);
     }
     100% {
         opacity: 1;
-        transform: translateX(0) translateY(0) rotate(360deg);
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+}
+
+/* Continuous subtle wobble animation */
+@keyframes idleWobble {
+    0%, 100% {
+        translate: 0 0;
+        rotate: 0deg;
+    }
+    12.5% {
+        translate: -24px 0;
+        rotate: -2deg;
+    }
+    25% {
+        translate: 20px 0;
+        rotate: 2deg;
+    }
+    37.5% {
+        translate: -16px 0;
+        rotate: -1.6deg;
+    }
+    50% {
+        translate: 16px 0;
+        rotate: 1.8deg;
+    }
+    62.5% {
+        translate: -12px 0;
+        rotate: -1.2deg;
+    }
+    75% {
+        translate: 10px 0;
+        rotate: 1.4deg;
+    }
+    87.5% {
+        translate: -6px 0;
+        rotate: -0.6deg;
     }
 }
 
 .animate-pop-up {
-    animation: slideInRight 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation: fallDownCaricature 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-wobble {
+    animation: idleWobble 15s ease-in-out infinite;
 }
