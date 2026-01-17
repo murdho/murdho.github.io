@@ -606,6 +606,11 @@
       padding-bottom: calc(var(--spacing) * 20);
     }
   }
+  .lg\:opacity-0 {
+    @media (width >= 64rem) {
+      opacity: 0%;
+    }
+  }
   .dark\:bg-blue-700 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-blue-700);
