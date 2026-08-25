@@ -174,7 +174,6 @@ body {
 
 .name {
   margin: 0;
-  perspective: 900px;
   font-family: var(--display);
   font-weight: 800;
   font-size: clamp(4rem, 11.5vw, 10.5rem);
@@ -183,7 +182,23 @@ body {
   text-transform: uppercase;
 }
 
+/* The word sways and the .fly inside it flies in. They have to be separate
+   elements: both animate transform, so on one element the sway could only
+   start after the entrance finished — the word visibly arrived, settled,
+   then began moving again. Split apart, the two compose and the sway is
+   running from the first frame. */
 .name > span {
+  /* shrink-wrap to the text: as a full-width block, transform-origin:center
+     lands on the middle of the *column*, which for the shorter word sits
+     way off to the right of its own centre and hinges it there */
+  display: table;
+  transform: perspective(620px) rotateY(0deg);
+  animation: sway var(--sway, 1.5s) ease-in-out
+             calc(var(--sway, 1.5s) * -0.5) infinite
+             var(--sway-dir, alternate);
+}
+
+.name .fly {
   display: block;
   opacity: 0;
   animation-duration: 1.05s;
@@ -192,17 +207,23 @@ body {
   animation-fill-mode: forwards;
 }
 
+.name .given .fly  { animation-name: flyInLeft; }
+.name .family .fly { animation-name: flyInRight; }
+
 .name .given {
+  --sway-a: 26deg;     /* swings +26 -> -26, through flat */
+  --sway: 1.5s;
   color: var(--paper);
-  transform-origin: left center;
-  animation-name: flyInLeft;
+  transform-origin: center center;
 }
 
 .name .family {
-  transform-origin: right center;
+  --sway-a: 26deg;
+  --sway: 1.5s;
+  --sway-dir: alternate-reverse;   /* mirrors the given name, always opposite */
+  transform-origin: center center;
   color: var(--rails-red);
   text-shadow: 0 0 34px rgba(211, 0, 1, .45);
-  animation-name: flyInRight;
 }
 
 .name .ltr { display: inline; }
@@ -242,6 +263,7 @@ body {
 .row:nth-of-type(3) { animation-delay: 1.22s; }
 .row:nth-of-type(4) { animation-delay: 1.32s; }
 .row:nth-of-type(5) { animation-delay: 1.42s; }
+.row:nth-of-type(6) { animation-delay: 1.52s; }
 
 .row dt {
   display: flex;
@@ -385,13 +407,13 @@ a.tag:focus-visible {
 /* the two name lines launch from opposite sides on the same beat and
    pass each other; everything else alternates in behind them */
 @keyframes flyInLeft {
-  from { opacity: 0; transform: translateX(-70%) translateZ(-340px) rotateY(34deg); }
-  to   { opacity: 1; transform: translateX(0) translateZ(0) rotateY(0); }
+  from { opacity: 0; transform: perspective(620px) translateX(-70%) translateZ(-260px) rotateY(34deg); }
+  to   { opacity: 1; transform: perspective(620px) translateX(0) translateZ(0) rotateY(0deg); }
 }
 
 @keyframes flyInRight {
-  from { opacity: 0; transform: translateX(70%) translateZ(-340px) rotateY(-34deg); }
-  to   { opacity: 1; transform: translateX(0) translateZ(0) rotateY(0); }
+  from { opacity: 0; transform: perspective(620px) translateX(70%) translateZ(-260px) rotateY(-34deg); }
+  to   { opacity: 1; transform: perspective(620px) translateX(0) translateZ(0) rotateY(0deg); }
 }
 
 @keyframes slideInLeft {
@@ -485,10 +507,16 @@ a.tag:focus-visible {
 .name .given  { --blink-floor: .38; }
 .name .family { --blink-floor: .56; }
 
-.name > span.landed {
-  animation-name: none;
-  opacity: 1;
+/* Once a word lands it keeps breathing: the lean eases between its full
+   angle and a fraction of it, for ever. The two run at different periods
+   so they drift out of step instead of pumping in unison. */
+@keyframes sway {
+  from { transform: perspective(620px) rotateY(var(--sway-a, 26deg)); }
+  to   { transform: perspective(620px)
+                    rotateY(calc(var(--sway-a, 26deg) * -1)); }
 }
+
+
 
 .tag.blinking.bkA, .name span.blinking.bkA { animation-name: blinkA; }
 .tag.blinking.bkB, .name span.blinking.bkB { animation-name: blinkB; }
@@ -556,6 +584,7 @@ a.tag:focus-visible {
   .bars { opacity: .6; }
   .bars svg, .bars .hot { animation: none; }
   .tag.blinking, .name span.blinking { animation: none; opacity: 1; }
+  .name .fly { animation: none; opacity: 1; }
   .portrait img { transition: none; transform: none; }
   .bars { transition: none; transform: none; }
   .tag:hover { transform: none; }

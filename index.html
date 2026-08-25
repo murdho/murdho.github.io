@@ -17,13 +17,13 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@_murdho_"/>
 
-  <link href="/static/favicon-32x32.png?v=202608251846" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="/static/favicon-16x16.png?v=202608251846" rel="icon" sizes="16x16" type="image/png"/>
-  <link href="/static/apple-touch-icon.png?v=202608251846" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/static/favicon-32x32.png?v=202608251925" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/static/favicon-16x16.png?v=202608251925" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/static/apple-touch-icon.png?v=202608251925" rel="apple-touch-icon" sizes="180x180"/>
   <link rel="preload" as="image" href="/static/murdho.webp" type="image/webp"/>
   <!-- bump v to the current UTC timestamp whenever style.css changes: Pages
        caches for 10 min, so without it a visitor can get new HTML on old CSS -->
-  <link href="/static/style.css?v=202608251846" rel="stylesheet"/>
+  <link href="/static/style.css?v=202608251925" rel="stylesheet"/>
 
   <script type="application/ld+json">
   {
@@ -110,8 +110,8 @@
   <header class="head">
     <p class="eyebrow">yo, i am</p>
     <h1 class="name" aria-label="Murdho Savila">
-      <span class="given">Murdho</span>
-      <span class="family">Savila</span>
+      <span class="given"><span class="fly">Murdho</span></span>
+      <span class="family"><span class="fly">Savila</span></span>
     </h1>
     <div class="rule" aria-hidden="true"></div>
   </header>
@@ -125,6 +125,14 @@
   </figure>
 
   <dl class="rows">
+
+    <div class="row">
+      <dt>about</dt>
+      <dd>
+        <span class="tag h-flame">pretty weird fella</span>
+        <span class="tag h-gold">meow</span>
+      </dd>
+    </div>
 
     <div class="row">
       <dt>living in</dt>
@@ -274,35 +282,24 @@
 
     // every letter becomes its own tube, so they fail one at a time instead
     // of the whole word going dark together
-    function letters(word) {
-      var text = word.textContent;
-      word.textContent = '';
+    function letters(fly) {
+      var text = fly.textContent;
+      fly.textContent = '';
       return [].map.call(text, function (ch) {
         var l = document.createElement('span');
         l.className = 'ltr';
         l.textContent = ch;
-        word.appendChild(l);
+        fly.appendChild(l);
         return l;
       });
     }
 
-    // The name can only blink once it has dropped its entrance animation.
-    // animationend normally delivers that, but it never fires if the load
-    // happened in a background tab, so a timer backstops it.
-    [].forEach.call(document.querySelectorAll('.name > span'), function (word, w) {
-      var started = false;
-
-      function land() {
-        if (started) return;
-        started = true;
-        word.classList.add('landed');
-        letters(word).forEach(function (l, i) {
-          schedule(l, 700 + w * 900 + i * 520 + rnd() * 2400, LTRS);
-        });
-      }
-
-      word.addEventListener('animationend', land, { once: true });
-      setTimeout(land, 2400);
+    // No waiting on the entrance any more: the sway lives on the word and
+    // the fly-in on .fly inside it, so nothing has to be handed over.
+    [].forEach.call(document.querySelectorAll('.name .fly'), function (fly, w) {
+      letters(fly).forEach(function (l, i) {
+        schedule(l, 1800 + w * 900 + i * 520 + rnd() * 2400, LTRS);
+      });
     });
   })();
 
