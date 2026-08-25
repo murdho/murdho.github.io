@@ -209,6 +209,37 @@
     layer.innerHTML = '<svg viewBox="0 0 100 100" preserveAspectRatio="none">' + out + '</svg>';
   })();
 
+  // Badges and the name borrow the filaments' failing-tube stutter. Long,
+  // desynced cycles so they never blink together and it stays a surprise.
+  (function () {
+    if (window.matchMedia &&
+        matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var seed = 987654321;
+    function rnd() {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed / 4294967296;
+    }
+
+    function stutter(el, minDur, spanDur, minDel, spanDel) {
+      el.style.setProperty('--dur', (minDur + rnd() * spanDur).toFixed(1) + 's');
+      el.style.setProperty('--del', (minDel + rnd() * spanDel).toFixed(1) + 's');
+      el.classList.add('flicker');
+    }
+
+    // starts well after the rows have finished arriving
+    [].forEach.call(document.querySelectorAll('.tag'), function (el) {
+      stutter(el, 17, 28, 4, 24);
+    });
+
+    // the name only once it has finished flying in
+    [].forEach.call(document.querySelectorAll('.name span'), function (el) {
+      el.addEventListener('animationend', function () {
+        stutter(el, 21, 18, 3, 11);
+      }, { once: true });
+    });
+  })();
+
   // One pointer drives the whole depth stack: the portrait turns to face it
   // while the bar field slides the other way, which is what sells the gap
   // between them as distance rather than decoration.

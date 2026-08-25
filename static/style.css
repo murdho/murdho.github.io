@@ -32,6 +32,7 @@
 :root {
   --void: #010102;   /* page black — identical to the portrait's own backdrop */
   --rails: #6f0000;  /* deep red, off the Rails mug */
+  --rails-red: #cc0000; /* the Rails logo red itself */
   --signal: #cf0101; /* the data-bar red */
   --flare: #fc0000;  /* pure rim-light red — glow only, never type */
   --ember: #ee8c39;  /* amber highlight — interactive */
@@ -186,8 +187,8 @@ body {
 
 .name .family {
   transform-origin: right center;
-  color: var(--signal);
-  text-shadow: 0 0 48px rgba(252, 0, 0, .5);
+  color: var(--rails-red);
+  text-shadow: 0 0 34px rgba(204, 0, 0, .45);
   animation-name: flyInRight;
 }
 
@@ -380,6 +381,42 @@ a.tag:focus-visible {
   95%           { opacity: calc(var(--o) * .5); }
 }
 
+/* the same failing-tube stutter the background filaments have, borrowed
+   by the badges and the name — long cycles, desynced per element */
+@keyframes tagFlicker {
+  0%, 95.2%, 100% { opacity: 1; }
+  95.7%           { opacity: .28; }
+  96.1%           { opacity: 1; }
+  96.9%           { opacity: .10; }
+  97.4%           { opacity: .82; }
+  98.1%           { opacity: .38; }
+  98.7%           { opacity: 1; }
+}
+
+@keyframes nameFlicker {
+  0%, 96.4%, 100% { opacity: 1; }
+  96.8%           { opacity: .34; }
+  97.1%           { opacity: 1; }
+  97.6%           { opacity: .16; }
+  98.0%           { opacity: .9; }
+  98.5%           { opacity: .5; }
+  99.0%           { opacity: 1; }
+}
+
+.tag.flicker {
+  animation: tagFlicker var(--dur, 19s) linear var(--del, 0s) infinite;
+}
+
+/* never stutter under the cursor — it reads as a glitch mid-click */
+.tag.flicker:hover { animation-play-state: paused; }
+
+.name span.flicker {
+  /* the entrance supplied opacity via forwards-fill; this shorthand clears
+     that, so restate it or the name vanishes during the flicker's delay */
+  opacity: 1;
+  animation: nameFlicker var(--dur, 23s) linear var(--del, 0s) infinite;
+}
+
 @keyframes portraitIn {
   from { opacity: 0; transform: translateX(9%) scale(.965); }
   to   { opacity: 1; transform: translateX(0) scale(1); }
@@ -440,6 +477,7 @@ a.tag:focus-visible {
   }
   .bars { opacity: .6; }
   .bars svg, .bars .hot { animation: none; }
+  .tag.flicker, .name span.flicker { animation: none; opacity: 1; }
   .portrait img { transition: none; transform: none; }
   .bars { transition: none; transform: none; }
   .tag:hover { transform: none; }
