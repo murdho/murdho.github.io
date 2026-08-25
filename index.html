@@ -209,8 +209,10 @@
     layer.innerHTML = '<svg viewBox="0 0 100 100" preserveAspectRatio="none">' + out + '</svg>';
   })();
 
-  // Badges and the name borrow the filaments' failing-tube stutter. Long,
-  // desynced cycles so they never blink together and it stays a surprise.
+  // Badges and the name borrow the filaments' failing-tube stutter. Rather
+  // than a CSS loop — which locks each element to one shape on a fixed
+  // period — every blink picks its own pattern, length and next interval,
+  // so the page never settles into a rhythm you can anticipate.
   (function () {
     if (window.matchMedia &&
         matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -221,33 +223,55 @@
       return seed / 4294967296;
     }
 
-    // The stutter sits at 95.2% of the cycle, so a plain delay would leave
-    // the page dead for most of a cycle before anything blinked. A negative
-    // delay drops each element in partway through instead; passing firstAt
-    // aims its opening stutter at a chosen moment after load.
-    var STUTTER_AT = 0.952;
+    var SHAPES = ['bkA', 'bkB', 'bkC', 'bkD'];
 
-    function stutter(el, minDur, spanDur, firstAt) {
-      var dur = minDur + rnd() * spanDur;
-      var del = firstAt == null ? -rnd() * dur : firstAt - STUTTER_AT * dur;
-      el.style.setProperty('--dur', dur.toFixed(1) + 's');
-      el.style.setProperty('--del', del.toFixed(2) + 's');
-      el.classList.add('flicker');
+    // minDur/spanDur set how laboured the sign is. The name carries the
+    // slowest range — at display size a quick stutter reads as a glitch
+    // rather than a tube struggling to light.
+    function schedule(el, wait, minDur, spanDur) {
+      setTimeout(function () {
+        // never glitch under the cursor; it reads as a bug mid-click
+        if (el.matches(':hover')) {
+          return schedule(el, 900 + rnd() * 1600, minDur, spanDur);
+        }
+
+        var shape = SHAPES[(rnd() * SHAPES.length) | 0];
+        var dur = minDur + rnd() * spanDur;
+
+        el.style.setProperty('--bdur', dur.toFixed(0) + 'ms');
+        el.classList.add('blinking', shape);
+
+        setTimeout(function () {
+          el.classList.remove('blinking', shape);
+          // now and then the sign fails again right after catching
+          schedule(el,
+            rnd() < 0.16 ? 380 + rnd() * 900 : 5200 + rnd() * 21000,
+            minDur, spanDur);
+        }, dur + 60);
+      }, wait);
     }
 
-    // a few badges are aimed at the first seconds so the page shows its
-    // hand early; the rest land on random phases from then on
-    var OPENERS = [0.7, 1.5, 2.4, 3.5, 4.9];
-
+    // opening blinks land in the first seconds so the page shows its hand
     [].forEach.call(document.querySelectorAll('.tag'), function (el, i) {
-      stutter(el, 14, 16, OPENERS[i] != null ? OPENERS[i] : null);
+      schedule(el, i < 5 ? 500 + i * 780 + rnd() * 420 : 1500 + rnd() * 17000,
+               700, 1050);
     });
 
-    // the name only once it has finished flying in
+    // The name can only blink once it has dropped its entrance animation.
+    // animationend normally delivers that, but it never fires if the load
+    // happened in a background tab, so a timer backstops it.
     [].forEach.call(document.querySelectorAll('.name span'), function (el, i) {
-      el.addEventListener('animationend', function () {
-        stutter(el, 15, 13, i === 0 ? 1.1 : 2.6);
-      }, { once: true });
+      var started = false;
+
+      function land() {
+        if (started) return;
+        started = true;
+        el.classList.add('landed');
+        schedule(el, 900 + i * 1500 + rnd() * 900, 1050, 1250);
+      }
+
+      el.addEventListener('animationend', land, { once: true });
+      setTimeout(land, 2400);
     });
   })();
 

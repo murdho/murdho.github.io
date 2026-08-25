@@ -22,6 +22,14 @@
 }
 
 @font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/static/fonts/SpaceGrotesk-600.woff2") format("woff2");
+}
+
+@font-face {
   font-family: 'Big Shoulders Display';
   font-style: normal;
   font-weight: 800;
@@ -37,11 +45,14 @@
   --flare: #fc0000;  /* pure rim-light red — glow only, never type */
   --ember: #ee8c39;  /* amber highlight — interactive */
   --skin: #f4bc78;
+  --label-ink: #cfa87c;  /* warm bone, solid — never white-on-alpha */
+  --blink-floor: .16;    /* a blinking element dims, it never disappears */
   --paper: #fffddf;  /* warm white, the brightest pixel in the portrait */
   --mute: rgba(255, 253, 223, 0.74);
   --rule: rgba(207, 1, 1, 0.26);
 
   --display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --label: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -143,10 +154,12 @@ body {
   display: flex;
   align-items: center;
   gap: .7rem;
-  font-size: clamp(.72rem, .95vw, .82rem);
-  letter-spacing: .22em;
+  font-family: var(--label);
+  font-weight: 600;
+  font-size: clamp(.78rem, .95vw, .88rem);
+  letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--mute);
+  color: var(--label-ink);
   opacity: 0;
   animation: slideInLeft .7s cubic-bezier(.2,.7,.3,1) .45s forwards;
 }
@@ -210,7 +223,8 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: minmax(0, 168px) minmax(0, 1fr);
+  /* wide enough for the longest label with its tick fully extended */
+  grid-template-columns: minmax(0, 192px) minmax(0, 1fr);
   gap: .35rem 1.5rem;
   align-items: baseline;
   padding: clamp(.6rem, 1.3vw, .95rem) 0;
@@ -228,11 +242,38 @@ body {
 .row:nth-of-type(5) { animation-delay: 1.42s; }
 
 .row dt {
-  font-size: clamp(.64rem, .78vw, .72rem);
-  letter-spacing: .2em;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--label);
+  font-weight: 600;
+  font-size: clamp(.74rem, .88vw, .84rem);
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--mute);
+  color: var(--label-ink);
   white-space: nowrap;
+  transition: color .28s ease, text-shadow .28s ease;
+}
+
+/* the same red tick the eyebrow carries, so every label reads as one family */
+.row dt::before {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 2px;
+  background: var(--rails-red);
+  box-shadow: 0 0 9px rgba(211, 0, 1, .65);
+  transition: width .28s cubic-bezier(.2, .7, .3, 1), background-color .28s ease;
+}
+
+.row:hover dt {
+  color: var(--paper);
+  text-shadow: 0 0 16px rgba(211, 0, 1, .55);
+}
+
+.row:hover dt::before {
+  width: 26px;
+  background: var(--flare);
 }
 
 .row dd {
@@ -381,41 +422,69 @@ a.tag:focus-visible {
   95%           { opacity: calc(var(--o) * .5); }
 }
 
-/* the same failing-tube stutter the background filaments have, borrowed
-   by the badges and the name — long cycles, desynced per element */
-@keyframes tagFlicker {
-  0%, 95.2%, 100% { opacity: 1; }
-  95.7%           { opacity: .28; }
-  96.1%           { opacity: 1; }
-  96.9%           { opacity: .10; }
-  97.4%           { opacity: .82; }
-  98.1%           { opacity: .38; }
-  98.7%           { opacity: 1; }
+/* A failing sign, not a strobe: opacity snaps rather than fades (steps),
+   and every pattern holds properly dark before it catches again. The one
+   exception is the voltage sag, which really does ramp. */
+@keyframes blinkA {          /* stutters twice, then catches */
+  0%   { opacity: 1; }
+  11%  { opacity: var(--blink-floor, .16); }
+  21%  { opacity: 1; }
+  28%  { opacity: var(--blink-floor, .16); }
+  38%  { opacity: .85; }
+  46%  { opacity: var(--blink-floor, .16); }
+  57%  { opacity: 1; }
+  100% { opacity: 1; }
 }
 
-@keyframes nameFlicker {
-  0%, 96.4%, 100% { opacity: 1; }
-  96.8%           { opacity: .34; }
-  97.1%           { opacity: 1; }
-  97.6%           { opacity: .16; }
-  98.0%           { opacity: .9; }
-  98.5%           { opacity: .5; }
-  99.0%           { opacity: 1; }
+@keyframes blinkB {          /* voltage sag — the one that ramps */
+  0%   { opacity: 1; }
+  12%  { opacity: .5; }
+  32%  { opacity: .3; }
+  55%  { opacity: .46; }
+  76%  { opacity: .28; }
+  93%  { opacity: 1; }
+  100% { opacity: 1; }
 }
 
-.tag.flicker {
-  animation: tagFlicker var(--dur, 19s) linear var(--del, 0s) infinite;
+@keyframes blinkC {          /* clean dropout, dark for a beat */
+  0%   { opacity: 1; }
+  24%  { opacity: var(--blink-floor, .16); }
+  56%  { opacity: 1; }
+  100% { opacity: 1; }
 }
 
-/* never stutter under the cursor — it reads as a glitch mid-click */
-.tag.flicker:hover { animation-play-state: paused; }
+@keyframes blinkD {          /* struggles to relight */
+  0%   { opacity: 1; }
+  8%   { opacity: var(--blink-floor, .16); }
+  29%  { opacity: .38; }
+  35%  { opacity: var(--blink-floor, .16); }
+  57%  { opacity: .9; }
+  63%  { opacity: var(--blink-floor, .16); }
+  72%  { opacity: 1; }
+  100% { opacity: 1; }
+}
 
-.name span.flicker {
-  /* the entrance supplied opacity via forwards-fill; this shorthand clears
-     that, so restate it or the name vanishes during the flicker's delay */
+.tag.blinking,
+.name span.blinking {
+  animation-duration: var(--bdur, 1100ms);
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+}
+
+/* the sag is the only one that should glide */
+.tag.blinking.bkB,
+.name span.blinking.bkB { animation-timing-function: linear; }
+
+.name span.landed {
+  animation-name: none;
   opacity: 1;
-  animation: nameFlicker var(--dur, 23s) linear var(--del, 0s) infinite;
 }
+
+.tag.blinking.bkA, .name span.blinking.bkA { animation-name: blinkA; }
+.tag.blinking.bkB, .name span.blinking.bkB { animation-name: blinkB; }
+.tag.blinking.bkC, .name span.blinking.bkC { animation-name: blinkC; }
+.tag.blinking.bkD, .name span.blinking.bkD { animation-name: blinkD; }
 
 @keyframes portraitIn {
   from { opacity: 0; transform: translateX(9%) scale(.965); }
@@ -477,7 +546,7 @@ a.tag:focus-visible {
   }
   .bars { opacity: .6; }
   .bars svg, .bars .hot { animation: none; }
-  .tag.flicker, .name span.flicker { animation: none; opacity: 1; }
+  .tag.blinking, .name span.blinking { animation: none; opacity: 1; }
   .portrait img { transition: none; transform: none; }
   .bars { transition: none; transform: none; }
   .tag:hover { transform: none; }

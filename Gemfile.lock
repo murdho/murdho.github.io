@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    tailwindcss-ruby (4.1.18)
-    tailwindcss-ruby (4.1.18-arm64-darwin)
     webrick (1.9.2)
 
 PLATFORMS
@@ -10,7 +8,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  tailwindcss-ruby
   webrick
 
 BUNDLED WITH
