@@ -193,9 +193,8 @@ body {
      way off to the right of its own centre and hinges it there */
   display: table;
   transform: perspective(620px) rotateY(0deg);
-  animation: sway var(--sway, 1.5s) ease-in-out
-             calc(var(--sway, 1.5s) * -0.5) infinite
-             var(--sway-dir, alternate);
+  animation: sway var(--sway, 7.2s) ease-in-out
+             var(--sway-delay, 0s) infinite;
 }
 
 .name .fly {
@@ -211,18 +210,19 @@ body {
 .name .family .fly { animation-name: flyInRight; }
 
 .name .given {
-  --sway-a: 26deg;     /* swings +26 -> -26, through flat */
-  --sway: 1.5s;
-  color: var(--paper);
+  --sway-a: 36deg;
+  --sway: 7.2s;
+  --hue: var(--paper);
+  color: var(--hue);
   transform-origin: center center;
 }
 
 .name .family {
-  --sway-a: 26deg;
-  --sway: 1.5s;
-  --sway-dir: alternate-reverse;   /* mirrors the given name, always opposite */
+  --sway-a: -36deg;    /* negative mirrors the whole arc, not just its ends */
+  --sway: 8.6s;        /* deliberately not a multiple of the other period */
   transform-origin: center center;
-  color: var(--rails-red);
+  --hue: var(--rails-red);
+  color: var(--hue);
   text-shadow: 0 0 34px rgba(211, 0, 1, .45);
 }
 
@@ -510,13 +510,72 @@ a.tag:focus-visible {
 /* Once a word lands it keeps breathing: the lean eases between its full
    angle and a fraction of it, for ever. The two run at different periods
    so they drift out of step instead of pumping in unison. */
+/* A plain two-stop swing is a pure sine — regular enough that the eye
+   predicts it. Wandering between uneven angles instead never repeats the
+   same arc twice within a cycle, and the two words run on periods that do
+   not divide into each other, so they drift rather than mirror in lockstep. */
 @keyframes sway {
-  from { transform: perspective(620px) rotateY(var(--sway-a, 26deg)); }
-  to   { transform: perspective(620px)
-                    rotateY(calc(var(--sway-a, 26deg) * -1)); }
+  0%, 100% { transform: perspective(620px) rotateY(var(--sway-a, 36deg)); }
+  13%  { transform: perspective(620px) rotateY(calc(var(--sway-a, 36deg) * -0.58)); }
+  26%  { transform: perspective(620px) rotateY(calc(var(--sway-a, 36deg) *  0.79)); }
+  40%  { transform: perspective(620px) rotateY(calc(var(--sway-a, 36deg) * -1)); }
+  55%  { transform: perspective(620px) rotateY(calc(var(--sway-a, 36deg) *  0.28)); }
+  69%  { transform: perspective(620px) rotateY(calc(var(--sway-a, 36deg) * -0.84)); }
+  85%  { transform: perspective(620px) rotateY(calc(var(--sway-a, 36deg) *  0.61)); }
 }
 
 
+
+/* The letters dim by colour, not opacity. The name carries negative
+   letter-spacing so neighbouring glyphs overlap slightly; a translucent
+   letter shows the one underneath through that overlap. Mixing the hue
+   toward the page black lands on the same brightness while staying fully
+   opaque, so there is nothing to see through. */
+.name .ltr {
+  --dim: color-mix(in srgb, var(--hue)
+                   calc(var(--blink-floor, .5) * 100%), var(--void));
+}
+
+@keyframes litA {
+  0%, 100% { color: var(--hue); }
+  11%  { color: var(--dim); }
+  21%  { color: var(--hue); }
+  28%  { color: var(--dim); }
+  38%  { color: color-mix(in srgb, var(--hue) 88%, var(--void)); }
+  46%  { color: var(--dim); }
+  57%  { color: var(--hue); }
+}
+
+@keyframes litB {
+  0%, 100% { color: var(--hue); }
+  12%  { color: color-mix(in srgb, var(--hue) 74%, var(--void)); }
+  32%  { color: var(--dim); }
+  55%  { color: color-mix(in srgb, var(--hue) 68%, var(--void)); }
+  76%  { color: var(--dim); }
+  93%  { color: var(--hue); }
+}
+
+@keyframes litC {
+  0%, 100% { color: var(--hue); }
+  24%  { color: var(--dim); }
+  56%  { color: var(--hue); }
+}
+
+@keyframes litD {
+  0%, 100% { color: var(--hue); }
+  8%   { color: var(--dim); }
+  29%  { color: color-mix(in srgb, var(--hue) 66%, var(--void)); }
+  35%  { color: var(--dim); }
+  57%  { color: color-mix(in srgb, var(--hue) 92%, var(--void)); }
+  63%  { color: var(--dim); }
+  72%  { color: var(--hue); }
+}
+
+/* four classes beats the .name span.blinking.bkN rules below */
+.name .ltr.blinking.bkA { animation-name: litA; }
+.name .ltr.blinking.bkB { animation-name: litB; }
+.name .ltr.blinking.bkC { animation-name: litC; }
+.name .ltr.blinking.bkD { animation-name: litD; }
 
 .tag.blinking.bkA, .name span.blinking.bkA { animation-name: blinkA; }
 .tag.blinking.bkB, .name span.blinking.bkB { animation-name: blinkB; }
