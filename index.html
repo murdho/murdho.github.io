@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport"/>
-  <meta name="description" content="Murdho Savila. Ruby on Rails. Hotwire. PostgreSQL."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Murdho Savila. Ruby on Rails. Hotwire. PostgreSQL. Software engineer in Helsinki, Finland."/>
+  <meta name="theme-color" content="#010102"/>
+  <title>Murdho Savila</title>
+
+  <meta property="og:type" content="profile"/>
+  <meta property="og:title" content="Murdho Savila"/>
+  <meta property="og:description" content="Ruby on Rails. Hotwire. PostgreSQL. Software engineer in Helsinki, Finland."/>
+  <meta property="og:url" content="https://murdho.com/"/>
+  <meta property="og:image" content="https://murdho.com/static/murdho.png"/>
+  <meta property="og:image:width" content="627"/>
+  <meta property="og:image:height" content="627"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@_murdho_"/>
+
   <link href="/static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="/static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
-  <link href="/static/tailwind.css" rel="stylesheet"/>
+  <link rel="preload" as="image" href="/static/murdho.webp" type="image/webp"/>
   <link href="/static/style.css" rel="stylesheet"/>
-  <title>Murdho Savila</title>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -85,75 +98,156 @@
   }
   </script>
 </head>
-<body class="bg-white dark:bg-slate-900 text-slate-950 dark:text-slate-300">
-<div class="grid grid-cols-1 lg:grid-cols-2">
-  <div class="pt-5 pl-5 md:pt-20 md:pl-20 lg:pb-20 grid grid-cols-1 grid-flow-row gap-20 justify-evenly">
-    <div class="animate-fall-down-left opacity-0" style="animation-delay: 0.1s;">
-      <p class="text-2xl">yo, i am</p>
-      <div class="mt-4 text-5xl">
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-violet-50 dark:hover:bg-violet-800 dark:bg-violet-700 text-violet-800 hover:bg-violet-200 bg-violet-100 -mr-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">Murdho</span>
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-orange-50 dark:hover:bg-orange-800 dark:bg-orange-700 text-orange-800 hover:bg-orange-200 bg-orange-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">Savila</span>
-      </div>
+<body>
+
+<div class="bars" id="bars" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <header class="head">
+    <p class="eyebrow">yo, i am</p>
+    <h1 class="name">
+      <span class="given">Murdho</span>
+      <span class="family">Savila</span>
+    </h1>
+    <div class="rule" aria-hidden="true"></div>
+  </header>
+
+  <figure class="portrait">
+    <picture>
+      <source srcset="/static/murdho.webp" type="image/webp"/>
+      <img src="/static/murdho.png" alt="Illustrated portrait of Murdho Savila drinking from a Ruby on Rails mug"
+           width="627" height="627" fetchpriority="high"/>
+    </picture>
+  </figure>
+
+  <dl class="rows">
+
+    <div class="row">
+      <dt>living in</dt>
+      <dd>
+        <a class="tag h-amber" href="https://maps.app.goo.gl/yWqGmNe7hLuCdaMM9" target="_blank" rel="noopener">helsinki</a>
+        <a class="tag h-gold" href="https://maps.app.goo.gl/aT9EsgGa4BCErzeh7" target="_blank" rel="noopener">finland</a>
+      </dd>
     </div>
-    <div class="animate-fall-down-right opacity-0" style="animation-delay: 0.2s;">
-      <p class="text-2xl">living in</p>
-      <div class="mt-4 text-2xl">
-        <a href="https://maps.app.goo.gl/yWqGmNe7hLuCdaMM9" target="_blank">
-          <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-pointer whitespace-nowrap dark:text-sky-50 dark:hover:bg-sky-800 dark:bg-sky-700 text-sky-800 hover:bg-sky-200 bg-sky-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">helsinki</span>
-        </a>
-        <a href="https://maps.app.goo.gl/aT9EsgGa4BCErzeh7" target="_blank">
-          <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-pointer whitespace-nowrap dark:text-emerald-50 dark:hover:bg-emerald-800 dark:bg-emerald-700 text-emerald-800 hover:bg-emerald-200 bg-emerald-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">finland</span>
-        </a>
-      </div>
+
+    <div class="row">
+      <dt>first appeared in</dt>
+      <dd>
+        <a class="tag h-flame" href="https://maps.app.goo.gl/3Lsj6xPLmbdJkhek9" target="_blank" rel="noopener">tallinn</a>
+        <a class="tag h-red" href="https://maps.app.goo.gl/wR3WWCrUBNxgQvaL9" target="_blank" rel="noopener">estonia</a>
+      </dd>
     </div>
-    <div class="animate-fall-down-center opacity-0" style="animation-delay: 0.3s;">
-      <p class="text-2xl">first appeared in</p>
-      <div class="mt-4 text-2xl">
-        <a href="https://maps.app.goo.gl/3Lsj6xPLmbdJkhek9" target="_blank">
-          <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-pointer whitespace-nowrap dark:text-zinc-50 dark:hover:bg-zinc-800 dark:bg-zinc-700 text-zinc-800 hover:bg-zinc-200 bg-zinc-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">tallinn</span>
-        </a>
-        <a href="https://maps.app.goo.gl/wR3WWCrUBNxgQvaL9" target="_blank">
-          <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-pointer whitespace-nowrap dark:text-pink-50 dark:hover:bg-pink-800 dark:bg-pink-700 text-pink-800 hover:bg-pink-200 bg-pink-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">estonia</span>
-        </a>
-      </div>
+
+    <div class="row">
+      <dt>favorite tools</dt>
+      <dd>
+        <span class="tag h-red">ruby on rails</span>
+        <span class="tag h-flame">hotwire</span>
+        <span class="tag h-amber">postgresql</span>
+        <span class="tag h-gold">sqlite</span>
+      </dd>
     </div>
-    <div class="animate-fall-down-right opacity-0" style="animation-delay: 0.4s;">
-      <p class="text-2xl">favorite tools</p>
-      <div class="mt-4 text-2xl">
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-red-50 dark:hover:bg-red-800 dark:bg-red-700 text-red-800 hover:bg-red-200 bg-red-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">ruby on rails</span>
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-blue-50 dark:hover:bg-blue-800 dark:bg-blue-700 text-blue-800 hover:bg-blue-200 bg-blue-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">postgresql</span>
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-sky-50 dark:hover:bg-sky-800 dark:bg-sky-700 text-sky-800 hover:bg-sky-200 bg-sky-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">sqlite</span>
-      </div>
+
+    <div class="row">
+      <dt>links</dt>
+      <dd>
+        <a class="tag h-gold" href="https://github.com/murdho" target="_blank" rel="noopener">github</a>
+        <a class="tag h-amber" href="https://www.linkedin.com/in/murdho" target="_blank" rel="noopener">linkedin</a>
+        <a class="tag h-skin" href="https://x.com/_murdho_" target="_blank" rel="noopener">x</a>
+        <a class="tag h-flame" href="https://instagram.com/_murdho_" target="_blank" rel="noopener">instagram</a>
+      </dd>
     </div>
-    <div class="animate-fall-down-left opacity-0" style="animation-delay: 0.5s;">
-      <p class="text-2xl">links</p>
-      <div class="mt-4 text-2xl">
-        <a href="https://github.com/murdho" target="_blank">
-          <span title="GitHub" class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 whitespace-nowrap dark:text-lime-50 dark:hover:bg-lime-800 dark:bg-lime-700 text-lime-800 hover:bg-lime-200 bg-lime-100 cursor-pointer -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">github</span>
-        </a>
-        <a href="https://www.linkedin.com/in/murdho" target="_blank">
-          <span title="LinkedIn" class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 whitespace-nowrap dark:text-indigo-50 dark:hover:bg-indigo-800 dark:bg-indigo-700 text-indigo-800 hover:bg-indigo-200 bg-indigo-100 cursor-pointer -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">linkedin</span>
-        </a>
-        <a href="https://instagram.com/_murdho_" target="_blank">
-          <span title="Instagram" class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 whitespace-nowrap dark:text-fuchsia-50 dark:hover:bg-fuchsia-800 dark:bg-fuchsia-700 text-fuchsia-800 hover:bg-fuchsia-200 bg-fuchsia-100 cursor-pointer -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">instagram</span>
-        </a>
-      </div>
+
+    <div class="row">
+      <dt>contact</dt>
+      <dd>
+        <span class="tag h-ember">murdho</span>
+        <span class="tag h-skin">@</span>
+        <span class="tag h-amber">murdho.com</span>
+        <a class="tag h-amber" href="https://wa.me/murdho" target="_blank" rel="noopener">whatsapp</a>
+      </dd>
     </div>
-    <div class="animate-fall-down-right opacity-0" style="animation-delay: 0.6s;">
-      <p class="text-2xl">contact</p>
-      <div class="mt-4 text-2xl">
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-rose-50 dark:hover:bg-rose-800 dark:bg-rose-700 text-rose-800 hover:bg-rose-200 bg-rose-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">murdho</span>
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-teal-50 dark:hover:bg-teal-800 dark:bg-teal-700 text-teal-800 hover:bg-teal-200 bg-teal-100 -mr-1 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">@</span>
-        <span class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 cursor-not-allowed whitespace-nowrap dark:text-yellow-50 dark:hover:bg-yellow-800 dark:bg-yellow-700 text-yellow-800 hover:bg-yellow-200 bg-yellow-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">murdho.com</span>
-        <a href="https://wa.me/murdho" target="_blank">
-          <span title="WhatsApp" class="inline-flex items-center px-3 py-2 rounded-md font-light mt-2 whitespace-nowrap dark:text-green-50 dark:hover:bg-green-800 dark:bg-green-700 text-green-800 hover:bg-green-200 bg-green-100 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-105">whatsapp</span>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="place-self-end lg:fixed lg:right-0 -z-10 lg:animate-pop-up lg:opacity-0" style="bottom: -10px; animation-delay: 1.2s;">
-    <img alt="murdho caricature" class="h-full w-full max-w-[800px] dark:brightness-75" src="/static/murdho.png" />
-  </div>
-</div>
+
+  </dl>
+
+</main>
+
+<script>
+  // The portrait's backdrop is a field of red data bars. The page paints the
+  // same field behind everything so the portrait has no edge to give it away.
+  (function () {
+    var layer = document.getElementById('bars');
+    if (!layer) return;
+
+    var seed = 20260825;
+    function rnd() {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed / 4294967296;
+    }
+
+    var cols = 88, out = '';
+    for (var c = 0; c < cols; c++) {
+      var x = (c / cols) * 100 + rnd() * 0.4;
+      var w = 0.10 + rnd() * 0.34;
+      var y = rnd() * 100;
+      var n = 3 + Math.floor(rnd() * 8);
+      for (var i = 0; i < n; i++) {
+        var h = 0.5 + rnd() * 6;
+        y = (y + h + 2 + rnd() * 13) % 100;
+        // a few bright filaments, the rest banked well down
+        var hot = rnd() > 0.9;
+        out += '<rect x="' + x.toFixed(2) + '" y="' + y.toFixed(2) +
+               '" width="' + w.toFixed(2) + '" height="' + h.toFixed(2) +
+               '" fill="' + (hot ? '#fc0000' : '#cf0101') +
+               '"' + (hot ? ' class="hot"' : '') +
+               ' style="--o:' + ((hot ? 0.55 : 0.08) + rnd() * 0.38).toFixed(2) +
+               (hot ? ';animation-delay:' + (rnd() * 14).toFixed(1) + 's' : '') + '"/>';
+      }
+    }
+
+    layer.innerHTML = '<svg viewBox="0 0 100 100" preserveAspectRatio="none">' + out + '</svg>';
+  })();
+
+  // One pointer drives the whole depth stack: the portrait turns to face it
+  // while the bar field slides the other way, which is what sells the gap
+  // between them as distance rather than decoration.
+  (function () {
+    if (!window.matchMedia) return;
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var img = document.querySelector('.portrait img');
+    var bars = document.getElementById('bars');
+    var x = 0, y = 0, queued = false;
+
+    function paint() {
+      queued = false;
+
+      if (img) {
+        // leans away from the pointer and turns to face it
+        img.style.setProperty('--px', ((0.5 - x) * 18).toFixed(1) + 'px');
+        img.style.setProperty('--py', ((0.5 - y) * 12).toFixed(1) + 'px');
+        img.style.setProperty('--ry', ((x - 0.5) * 11).toFixed(2) + 'deg');
+        img.style.setProperty('--rx', ((0.5 - y) * 8).toFixed(2) + 'deg');
+      }
+
+      // the field drifts with the pointer while the portrait drifts against
+      // it, which is what sells the gap between them as depth
+      if (bars) {
+        bars.style.setProperty('--bx', ((x - 0.5) * 26).toFixed(1) + 'px');
+        bars.style.setProperty('--by', ((y - 0.5) * 16).toFixed(1) + 'px');
+      }
+    }
+
+    addEventListener('pointermove', function (e) {
+      x = e.clientX / innerWidth;
+      y = e.clientY / innerHeight;
+      if (!queued) { queued = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+  })();
+</script>
+
 </body>
 </html>
