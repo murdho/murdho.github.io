@@ -32,7 +32,7 @@
 :root {
   --void: #010102;   /* page black — identical to the portrait's own backdrop */
   --rails: #6f0000;  /* deep red, off the Rails mug */
-  --rails-red: #cc0000; /* the Rails logo red itself */
+  --rails-red: #d30001; /* the Rails logo red, off rubyonrails.org */
   --signal: #cf0101; /* the data-bar red */
   --flare: #fc0000;  /* pure rim-light red — glow only, never type */
   --ember: #ee8c39;  /* amber highlight — interactive */
@@ -188,7 +188,7 @@ body {
 .name .family {
   transform-origin: right center;
   color: var(--rails-red);
-  text-shadow: 0 0 34px rgba(204, 0, 0, .45);
+  text-shadow: 0 0 34px rgba(211, 0, 1, .45);
   animation-name: flyInRight;
 }
 

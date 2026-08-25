@@ -221,21 +221,32 @@
       return seed / 4294967296;
     }
 
-    function stutter(el, minDur, spanDur, minDel, spanDel) {
-      el.style.setProperty('--dur', (minDur + rnd() * spanDur).toFixed(1) + 's');
-      el.style.setProperty('--del', (minDel + rnd() * spanDel).toFixed(1) + 's');
+    // The stutter sits at 95.2% of the cycle, so a plain delay would leave
+    // the page dead for most of a cycle before anything blinked. A negative
+    // delay drops each element in partway through instead; passing firstAt
+    // aims its opening stutter at a chosen moment after load.
+    var STUTTER_AT = 0.952;
+
+    function stutter(el, minDur, spanDur, firstAt) {
+      var dur = minDur + rnd() * spanDur;
+      var del = firstAt == null ? -rnd() * dur : firstAt - STUTTER_AT * dur;
+      el.style.setProperty('--dur', dur.toFixed(1) + 's');
+      el.style.setProperty('--del', del.toFixed(2) + 's');
       el.classList.add('flicker');
     }
 
-    // starts well after the rows have finished arriving
-    [].forEach.call(document.querySelectorAll('.tag'), function (el) {
-      stutter(el, 17, 28, 4, 24);
+    // a few badges are aimed at the first seconds so the page shows its
+    // hand early; the rest land on random phases from then on
+    var OPENERS = [0.7, 1.5, 2.4, 3.5, 4.9];
+
+    [].forEach.call(document.querySelectorAll('.tag'), function (el, i) {
+      stutter(el, 14, 16, OPENERS[i] != null ? OPENERS[i] : null);
     });
 
     // the name only once it has finished flying in
-    [].forEach.call(document.querySelectorAll('.name span'), function (el) {
+    [].forEach.call(document.querySelectorAll('.name span'), function (el, i) {
       el.addEventListener('animationend', function () {
-        stutter(el, 21, 18, 3, 11);
+        stutter(el, 15, 13, i === 0 ? 1.1 : 2.6);
       }, { once: true });
     });
   })();
