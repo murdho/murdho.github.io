@@ -8,13 +8,13 @@ A single static page. No build step: `index.html` plus hand-written
 `static/style.css` is linked with a version query:
 
 ```html
-<link href="/static/style.css?v=202608251940" rel="stylesheet"/>
+<link href="/static/style.css?v=202608251956" rel="stylesheet"/>
 ```
 
 **After editing `static/style.css`, update `v` to the current UTC timestamp:**
 
 ```bash
-date -u "+%Y%m%d%H%M"    # e.g. 202608251940
+date -u "+%Y%m%d%H%M"    # e.g. 202608251956
 ```
 
 GitHub Pages serves everything with `cache-control: max-age=600`, so a

@@ -377,14 +377,20 @@ a.tag:focus-visible {
   filter: blur(26px);
 }
 
-.portrait img {
-  display: block;
-  width: 100%;
-  height: auto;
+/* the tilt lives on the wrapper, not the image, so anything pinned to a
+   feature of the face rides along with it instead of sliding off */
+.portrait .shot {
+  position: relative;
   transform: translate3d(var(--px, 0px), var(--py, 0px), 0)
              rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition: transform .55s cubic-bezier(.2, .7, .3, 1);
   will-change: transform;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
   /* the portrait's backdrop and the page share one black, so fading the
      edges lets it emerge from the page's own bar field with no seam */
   -webkit-mask-image:
@@ -395,6 +401,51 @@ a.tag:focus-visible {
     linear-gradient(to bottom, transparent 0, #000 9%, #000 88%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+}
+
+/* A catchlight in his right eye, sitting on the iris highlight the
+   illustration already has. Four-point star: a core plus crossed streaks. */
+.glint {
+  position: absolute;
+  left: 56.3%;
+  top: 48%;
+  width: clamp(14px, 5%, 34px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.15);
+  background: radial-gradient(circle,
+    #ffffff 0%, rgba(255, 253, 223, .85) 18%, rgba(255, 220, 150, .25) 42%,
+    transparent 68%);
+}
+
+.glint::before,
+.glint::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to right,
+    transparent, #fffdf0 48%, #fffdf0 52%, transparent);
+}
+
+.glint::before { left: -18%; right: -18%; top: 47%; height: 6%; }
+
+.glint::after {
+  top: -18%;
+  bottom: -18%;
+  left: 47%;
+  width: 6%;
+  background: linear-gradient(to bottom,
+    transparent, #fffdf0 48%, #fffdf0 52%, transparent);
+}
+
+.glint.flash { animation: glint var(--gdur, 900ms) ease-out 1; }
+
+@keyframes glint {
+  0%   { opacity: 0;   transform: translate(-50%, -50%) scale(.1)  rotate(-12deg); }
+  18%  { opacity: 1;   transform: translate(-50%, -50%) scale(1)   rotate(4deg); }
+  42%  { opacity: .55; transform: translate(-50%, -50%) scale(.62) rotate(14deg); }
+  62%  { opacity: .9;  transform: translate(-50%, -50%) scale(.85) rotate(20deg); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(.1)  rotate(34deg); }
 }
 
 /* --- motion -------------------------------------------------------- */
