@@ -107,7 +107,7 @@
 
   <header class="head">
     <p class="eyebrow">yo, i am</p>
-    <h1 class="name">
+    <h1 class="name" aria-label="Murdho Savila">
       <span class="given">Murdho</span>
       <span class="family">Savila</span>
     </h1>
@@ -228,49 +228,78 @@
     // minDur/spanDur set how laboured the sign is. The name carries the
     // slowest range — at display size a quick stutter reads as a glitch
     // rather than a tube struggling to light.
-    function schedule(el, wait, minDur, spanDur) {
+    function fire(el, shape, dur) {
+      el.style.setProperty('--bdur', dur.toFixed(0) + 'ms');
+      el.classList.add('blinking', shape);
+      setTimeout(function () {
+        el.classList.remove('blinking', shape);
+      }, dur + 60);
+    }
+
+    function schedule(el, wait, cfg) {
       setTimeout(function () {
         // never glitch under the cursor; it reads as a bug mid-click
-        if (el.matches(':hover')) {
-          return schedule(el, 900 + rnd() * 1600, minDur, spanDur);
-        }
+        if (el.matches(':hover')) return schedule(el, 900 + rnd() * 1600, cfg);
 
         var shape = SHAPES[(rnd() * SHAPES.length) | 0];
-        var dur = minDur + rnd() * spanDur;
+        var dur = cfg.minDur + rnd() * cfg.spanDur;
+        fire(el, shape, dur);
 
-        el.style.setProperty('--bdur', dur.toFixed(0) + 'ms');
-        el.classList.add('blinking', shape);
+        // a failing sign takes its neighbour with it often enough that
+        // letters going strictly one at a time would read as too tidy
+        if (cfg.spread && rnd() < 0.28 && el.nextElementSibling) {
+          fire(el.nextElementSibling, shape, dur * (0.8 + rnd() * 0.4));
+        }
 
         setTimeout(function () {
-          el.classList.remove('blinking', shape);
-          // now and then the sign fails again right after catching
+          // now and then it fails again right after catching
           schedule(el,
-            rnd() < 0.16 ? 380 + rnd() * 900 : 5200 + rnd() * 21000,
-            minDur, spanDur);
+            rnd() < 0.14 ? 380 + rnd() * 900
+                         : cfg.minGap + rnd() * cfg.spanGap, cfg);
         }, dur + 60);
       }, wait);
     }
 
+    var TAGS = { minDur: 700, spanDur: 1050, minGap: 5200, spanGap: 21000 };
+    var LTRS = { minDur: 950, spanDur: 1150, minGap: 15000, spanGap: 30000,
+                 spread: true };
+
     // opening blinks land in the first seconds so the page shows its hand
     [].forEach.call(document.querySelectorAll('.tag'), function (el, i) {
       schedule(el, i < 5 ? 500 + i * 780 + rnd() * 420 : 1500 + rnd() * 17000,
-               700, 1050);
+               TAGS);
     });
+
+    // every letter becomes its own tube, so they fail one at a time instead
+    // of the whole word going dark together
+    function letters(word) {
+      var text = word.textContent;
+      word.textContent = '';
+      return [].map.call(text, function (ch) {
+        var l = document.createElement('span');
+        l.className = 'ltr';
+        l.textContent = ch;
+        word.appendChild(l);
+        return l;
+      });
+    }
 
     // The name can only blink once it has dropped its entrance animation.
     // animationend normally delivers that, but it never fires if the load
     // happened in a background tab, so a timer backstops it.
-    [].forEach.call(document.querySelectorAll('.name span'), function (el, i) {
+    [].forEach.call(document.querySelectorAll('.name > span'), function (word, w) {
       var started = false;
 
       function land() {
         if (started) return;
         started = true;
-        el.classList.add('landed');
-        schedule(el, 900 + i * 1500 + rnd() * 900, 1050, 1250);
+        word.classList.add('landed');
+        letters(word).forEach(function (l, i) {
+          schedule(l, 700 + w * 900 + i * 520 + rnd() * 2400, LTRS);
+        });
       }
 
-      el.addEventListener('animationend', land, { once: true });
+      word.addEventListener('animationend', land, { once: true });
       setTimeout(land, 2400);
     });
   })();

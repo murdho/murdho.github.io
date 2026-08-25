@@ -183,7 +183,7 @@ body {
   text-transform: uppercase;
 }
 
-.name span {
+.name > span {
   display: block;
   opacity: 0;
   animation-duration: 1.05s;
@@ -204,6 +204,8 @@ body {
   text-shadow: 0 0 34px rgba(211, 0, 1, .45);
   animation-name: flyInRight;
 }
+
+.name .ltr { display: inline; }
 
 .rule {
   height: 1px;
@@ -478,9 +480,9 @@ a.tag:focus-visible {
 
 /* the surname's red is only 3.75:1 at full strength, so it has far less
    room to dim than anything else before it sinks into the background */
-.name span { --blink-floor: .66; }
+.name > span { --blink-floor: .66; }
 
-.name span.landed {
+.name > span.landed {
   animation-name: none;
   opacity: 1;
 }
