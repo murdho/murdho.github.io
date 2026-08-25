@@ -20,7 +20,9 @@
   <link href="/static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="/static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
   <link rel="preload" as="image" href="/static/murdho.webp" type="image/webp"/>
-  <link href="/static/style.css" rel="stylesheet"/>
+  <!-- bump v to the current UTC timestamp whenever style.css changes: Pages
+       caches for 10 min, so without it a visitor can get new HTML on old CSS -->
+  <link href="/static/style.css?v=202608251631" rel="stylesheet"/>
 
   <script type="application/ld+json">
   {
@@ -340,6 +342,26 @@
       y = e.clientY / innerHeight;
       if (!queued) { queued = true; requestAnimationFrame(paint); }
     }, { passive: true });
+  })();
+
+  // Chrome buffers console output, so this is waiting whenever devtools opens
+  (function () {
+    // same recipe as the badges on the page: text in the hue, a dark wash
+    // of it behind, and a lighter edge of the same
+    console.log(
+      '%c YOU are not in the sudoers file. This incident will be reported. ',
+      'color:#ff3b30;' +
+      'background:rgba(255,59,48,.15);' +
+      'border:1px solid rgba(255,59,48,.45);' +
+      'border-radius:3px;' +
+      // inline-block first, or the vertical margin is ignored the way it
+      // would be on any inline element
+      'display:inline-block;' +
+      'margin:14px 0;' +
+      'padding:10px 12px;' +
+      'font:400 14px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;' +
+      'letter-spacing:.02em;'
+    );
   })();
 </script>
 
