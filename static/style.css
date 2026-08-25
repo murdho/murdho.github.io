@@ -46,7 +46,7 @@
   --ember: #ee8c39;  /* amber highlight — interactive */
   --skin: #f4bc78;
   --label-ink: #cfa87c;  /* warm bone, solid — never white-on-alpha */
-  --blink-floor: .16;    /* a blinking element dims, it never disappears */
+  --blink-floor: .52;    /* a blinking element dims, it stays clearly legible */
   --paper: #fffddf;  /* warm white, the brightest pixel in the portrait */
   --mute: rgba(255, 253, 223, 0.74);
   --rule: rgba(207, 1, 1, 0.26);
@@ -427,39 +427,39 @@ a.tag:focus-visible {
    exception is the voltage sag, which really does ramp. */
 @keyframes blinkA {          /* stutters twice, then catches */
   0%   { opacity: 1; }
-  11%  { opacity: var(--blink-floor, .16); }
+  11%  { opacity: var(--blink-floor, .52); }
   21%  { opacity: 1; }
-  28%  { opacity: var(--blink-floor, .16); }
-  38%  { opacity: .85; }
-  46%  { opacity: var(--blink-floor, .16); }
+  28%  { opacity: var(--blink-floor, .52); }
+  38%  { opacity: .88; }
+  46%  { opacity: var(--blink-floor, .52); }
   57%  { opacity: 1; }
   100% { opacity: 1; }
 }
 
 @keyframes blinkB {          /* voltage sag — the one that ramps */
   0%   { opacity: 1; }
-  12%  { opacity: .5; }
-  32%  { opacity: .3; }
-  55%  { opacity: .46; }
-  76%  { opacity: .28; }
+  12%  { opacity: .74; }
+  32%  { opacity: var(--blink-floor, .52); }
+  55%  { opacity: .68; }
+  76%  { opacity: var(--blink-floor, .52); }
   93%  { opacity: 1; }
   100% { opacity: 1; }
 }
 
 @keyframes blinkC {          /* clean dropout, dark for a beat */
   0%   { opacity: 1; }
-  24%  { opacity: var(--blink-floor, .16); }
+  24%  { opacity: var(--blink-floor, .52); }
   56%  { opacity: 1; }
   100% { opacity: 1; }
 }
 
 @keyframes blinkD {          /* struggles to relight */
   0%   { opacity: 1; }
-  8%   { opacity: var(--blink-floor, .16); }
-  29%  { opacity: .38; }
-  35%  { opacity: var(--blink-floor, .16); }
-  57%  { opacity: .9; }
-  63%  { opacity: var(--blink-floor, .16); }
+  8%   { opacity: var(--blink-floor, .52); }
+  29%  { opacity: .66; }
+  35%  { opacity: var(--blink-floor, .52); }
+  57%  { opacity: .92; }
+  63%  { opacity: var(--blink-floor, .52); }
   72%  { opacity: 1; }
   100% { opacity: 1; }
 }
@@ -475,6 +475,10 @@ a.tag:focus-visible {
 /* the sag is the only one that should glide */
 .tag.blinking.bkB,
 .name span.blinking.bkB { animation-timing-function: linear; }
+
+/* the surname's red is only 3.75:1 at full strength, so it has far less
+   room to dim than anything else before it sinks into the background */
+.name span { --blink-floor: .66; }
 
 .name span.landed {
   animation-name: none;
